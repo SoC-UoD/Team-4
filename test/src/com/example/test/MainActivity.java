@@ -11,6 +11,8 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,20 +54,40 @@ public class MainActivity extends Activity {
     private class DownloadStockData extends AsyncTask<String, Integer, String> {
 
     	String results[];
+    	Boolean connectionOk;
+    	
         @Override
         protected String doInBackground(String... sUrl) {
-        	HttpClient httpclient = new DefaultHttpClient();
+        	
+        	BasicHttpParams connectionSettings = new BasicHttpParams();
+        	HttpConnectionParams.setConnectionTimeout(connectionSettings, 3000);
+        	
+        	
+        	HttpClient httpclient = new DefaultHttpClient(connectionSettings);
         	String[] str = new String[5];
         	
+        	try {
         	// Prepare a request object
         	HttpGet httpget = new HttpGet(sUrl[0]);
         	
+        	
         	// Execute the request
         	HttpResponse response;
-        	try {
+        	
+        	
+        	
         		response = httpclient.execute(httpget);
-        		// Examine the response status
-        		Log.d("http response;", response.getStatusLine().toString());
+
+            		Log.d("respone status value", response.getStatusLine().toString());
+
+            		if (response.getStatusLine().getStatusCode() == 200)
+            		{
+            			connectionOk = true;
+
+            		} else {
+            			connectionOk = false;
+            		}
+            	
         		
         		// Get hold of the response entity
         		HttpEntity entity = response.getEntity();
@@ -97,17 +119,13 @@ public class MainActivity extends Activity {
         		}
         	} catch (ClientProtocolException e) {
         		Log.d("x", "ClientProtocolException");
-        		e.printStackTrace();
         	} catch (IOException e) {
         		Log.d("y", "IOException " + e.getMessage());
-        		e.printStackTrace();
+        		connectionOk = false;
         	} catch (JSONException e) {
         		Log.d("z", "JSONException " + e.getMessage());
         		e.getMessage();
-        	} catch (Exception e) {
-        		Log.d("a", "Other exception" + e.getMessage());
-        	}
-        	
+        	} 
         	
         	results = str;
         	
@@ -155,8 +173,16 @@ public class MainActivity extends Activity {
 
     	@Override
          protected void onPostExecute(String success) {
-             super.onPostExecute("success");
-    		tv_view.setText(results[0] + " = " + results[1] + "\n");   
+            if (connectionOk)
+            {
+            	super.onPostExecute("success");
+             
+            	tv_view.setText(results[0] + " = " + results[1] + "\n");   
+            } else 
+            {
+            	super.onPostExecute("failure");
+            	tv_view.setText("The yahoo feed is down");
+            }
       	   
          }
     }
