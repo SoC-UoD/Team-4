@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,14 +28,15 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 	
 	TextView tv_view;
-    @Override
+	
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
         
         tv_view = (TextView)findViewById(R.id.tv_view);
-        tv_view.setText("Not hello world");
+        tv_view.setText("Press refresh");
     }
 
     @Override
@@ -42,7 +44,8 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
-    
+
+	
     public void testClick(View view)
     {
 
