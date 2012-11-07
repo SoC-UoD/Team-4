@@ -1,6 +1,10 @@
 package com.example.test;
 
+/* Class represents a stock option... that is a investment in one stock symbol */ 
+
 public class Stock {
+	
+	private String _symbol;
 	private double _previousFridayClosePrice;
 	private String _previousFridayDate;
 	
@@ -8,6 +12,18 @@ public class Stock {
 	private double _marketCap;
 	private int _volume;
 	private double _percentChange;
+	
+	private int _numberOfSharesOwned;
+	
+	public String getSymbol()
+	{
+		return _symbol;
+	}
+	
+	public void setSymbol(String newSymbol)
+	{
+		_symbol = newSymbol;
+	}
 	
 	public double getPreviousFriClosePrice()
 	{
@@ -67,5 +83,25 @@ public class Stock {
 	public double getPercentChange()
 	{
 		return _percentChange;
+	}
+	
+	public void setNumberOfSharesOwned(int newNumber)
+	{
+		_numberOfSharesOwned = newNumber;
+	}
+	
+	public int getNumberOfSharesOwned()
+	{
+		return _numberOfSharesOwned;
+	}
+	
+	public long getValueForSet()
+	{
+		return Math.round(_numberOfSharesOwned * _currentPrice);
+	}
+	
+	public long getValueForPrevFriSet()
+	{
+		return Math.round(_numberOfSharesOwned * _previousFridayClosePrice);
 	}
 }

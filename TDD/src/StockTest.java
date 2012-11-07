@@ -3,12 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import com.example.test.Stock;
 
-/*
- * 
-
-	double _percentChange;
- */
-
 public class StockTest {
 	
 	Stock testStock;
@@ -17,42 +11,66 @@ public class StockTest {
 	public void setUp()
 	{
 		testStock = new Stock();
+		testStock.setNumberOfSharesOwned(125);
+		testStock.setCurrentPrice(123.45);
+		testStock.setPreviousFriDate("12/06/2015");
+		testStock.setMarketCap(1239999999999999.45);
+		testStock.setPreviousFriClosePrice(120.51);
+		testStock.setVolume(123456789);
+		testStock.setPercentChange(0.24);
 	}
 	
 	@Test
-	public void testCurrentPrice() {
-		testStock.setCurrentPrice(123.45);
+	public void testCurrentPrice() 
+	{
 		assertEquals(123.45, testStock.getCurrentPrice(), 0.0001);
 	}
 	
 	@Test
-	public void testPreviousFridayDate() {
-		testStock.setPreviousFriDate("12/06/2015");
+	public void testPreviousFridayDate() 
+	{
 		assertEquals("12/06/2015", testStock.getPreviousFriDate());
 	}
 	
 	@Test
-	public void testMarketCap() {
-		testStock.setMarketCap(1239999999999999.45);
+	public void testMarketCap() 
+	{
 		assertEquals(1239999999999999.45, testStock.getMarketCap(), 0.0001);
 	}
 	
 	@Test
-	public void testPreviousFridayClosePrice() {
-		testStock.setPreviousFriClosePrice(123.45);
-		assertEquals(123.45, testStock.getPreviousFriClosePrice(), 0.0001);
+	public void testPreviousFridayClosePrice() 
+	{
+		assertEquals(120.51, testStock.getPreviousFriClosePrice(), 0.0001);
 	}
 	
 	@Test
-	public void testVolume() {
-		testStock.setVolume(123456789);
+	public void testVolume() 
+	{
 		assertEquals(123456789, testStock.getVolume());
 	}
 	
 	@Test
-	public void testPercentChange() {
-		testStock.setPercentChange(0.24);
+	public void testPercentChange() 
+	{
 		assertEquals(0.24, testStock.getPercentChange(), 0.00001);
 	}
+	
+	@Test
+	public void testNumberOfSharesOwned() 
+	{
+		assertEquals(125, testStock.getNumberOfSharesOwned());
+	}
 
+	@Test
+	public void testValueForSet()
+	{
+		assertEquals(15431, testStock.getValueForSet());
+	}
+	
+	@Test
+	public void testValueForPrevFriSet()
+	{
+		assertEquals(15064.0, testStock.getValueForPrevFriSet(), 0.000001);
+	}
 }
