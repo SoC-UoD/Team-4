@@ -130,6 +130,12 @@ public class DownloadHistoricalStockData  {
 		}
 	
 		@Override
+	     protected void onPreExecute() {
+	         super.onPreExecute();    
+	         notifyUi.downloading();
+	     }
+		
+		@Override
 	     protected void onPostExecute(String result) {
 	         super.onPostExecute(result);    
 	         notifyUi.update();
