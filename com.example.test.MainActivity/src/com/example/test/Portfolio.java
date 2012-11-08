@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Portfolio {
 	
 	private int _numberOfStockOptions;
-	private double _totalPortfolioValuePrevFri;
 	private ArrayList<Stock> _optionsPortfolio;
+	private String _errors;
 	
 	public Portfolio()
 	{
-		_totalPortfolioValuePrevFri = 0;
+		_errors = "";
 		_numberOfStockOptions = 0;
 		_optionsPortfolio = new ArrayList<Stock>();
 	}
@@ -23,12 +23,28 @@ public class Portfolio {
 	public void addStock(Stock newStock)
 	{
 		_numberOfStockOptions++;
-		_totalPortfolioValuePrevFri += newStock.getValueForPrevFriSet();
 		_optionsPortfolio.add(newStock);
 	}
 
+	public String getErrors ()
+	{
+		return _errors;
+	}
+	
 	public long getPortfolioValuePrevFriday() {
-		return Math.round(_totalPortfolioValuePrevFri);
+		double totalPortfolioValuePrevFri = 0;
+		for (int i = 0; i < _optionsPortfolio.size(); i++)
+		{
+			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())
+			{
+				_errors += _optionsPortfolio.get(i).getSymbol();
+			}
+			else
+			{
+				totalPortfolioValuePrevFri += _optionsPortfolio.get(i).getValueForPrevFriSet();
+			}
+		}
+		return Math.round(totalPortfolioValuePrevFri);
 	}
 	
 	public Stock[] getPortfolioOptions()

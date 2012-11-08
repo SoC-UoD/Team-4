@@ -6,14 +6,45 @@ public class Stock {
 	
 	private String _symbol;
 	private double _previousFridayClosePrice;
-	private String _previousFridayDate;
+	
+	private int _prevFriDay;
+	private int _prevFriMonth;
+	private int _prevFriYear;
 	
 	private double _currentPrice;
 	private double _marketCap;
 	private int _volume;
 	private double _percentChange;
-	
 	private int _numberOfSharesOwned;
+	
+	private boolean _errorOnCurrentData;
+	private boolean _errorOnHistoricalData;
+	
+	public Stock()
+	{
+		_errorOnCurrentData = false;
+		_errorOnHistoricalData = false;
+	}
+	
+	public void setErrorOnCurrentData()
+	{
+		_errorOnCurrentData = true;
+	}
+	
+	public boolean checkErrorOnCurrentData()
+	{
+		return _errorOnCurrentData;
+	}
+	
+	public void setErrorOnHistoricalData()
+	{
+		_errorOnHistoricalData = true;
+	}
+	
+	public boolean checkErrorOnHistoricalData()
+	{
+		return _errorOnHistoricalData;
+	}
 	
 	public String getSymbol()
 	{
@@ -47,12 +78,14 @@ public class Stock {
 	
 	public String getPreviousFriDate()
 	{
-		return _previousFridayDate;
+		return _prevFriDay + "/" + _prevFriMonth + "/" + _prevFriYear;
 	}
 	
-	public void setPreviousFriDate(String newDate) 
+	public void setPreviousFriDate(int day, int month, int year) 
 	{
-		_previousFridayDate = newDate;
+		_prevFriDay = day;
+		_prevFriMonth = month;
+		_prevFriYear = year; 
 	}
 	
 	public void setMarketCap(double newCap)
@@ -103,5 +136,17 @@ public class Stock {
 	public long getValueForPrevFriSet()
 	{
 		return Math.round(_numberOfSharesOwned * _previousFridayClosePrice);
+	}
+	
+	public String historicalQuery()
+	{		
+		String queryDate = _prevFriYear + "-" + _prevFriMonth + "-" + _prevFriDay;
+		return "http://query.yahooapis.com/v1/public/yql?q=select%20Close%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22"
+				+ this.getSymbol()
+				+ "%22%20and%20startDate%20%3D%20%22"
+				+ queryDate
+				+ "%22%20and%20endDate%20%3D%20%22"
+				+ queryDate
+				+ "%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 	}
 }

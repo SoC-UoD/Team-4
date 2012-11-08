@@ -11,13 +11,62 @@ public class StockTest {
 	public void setUp()
 	{
 		testStock = new Stock();
+		testStock.setSymbol("BP.L");
 		testStock.setNumberOfSharesOwned(125);
 		testStock.setCurrentPrice(123.45);
-		testStock.setPreviousFriDate("12/06/2015");
+		testStock.setPreviousFriDate(12, 06, 2015);
 		testStock.setMarketCap(1239999999999999.45);
 		testStock.setPreviousFriClosePrice(120.51);
 		testStock.setVolume(123456789);
 		testStock.setPercentChange(0.24);
+	}
+	
+	@Test
+	public void testHistoricalQuery()
+	{
+		assertEquals("http://query.yahooapis.com/v1/public/yql?q=select%20Close%20from%20yahoo.finance.historicaldata%20where%20symbol%20%3D%20%22BP.L%22%20and%20startDate%20%3D%20%222015-6-12%22%20and%20endDate%20%3D%20%222015-6-12%22&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", testStock.historicalQuery());
+	}
+	
+	
+	@Test
+	public void testNoErrorOnHistoricalData()
+	{
+		assertFalse(testStock.checkErrorOnHistoricalData());
+	}
+	
+	@Test
+	public void testErrorOnHistoricalData()
+	{
+		testStock.setErrorOnHistoricalData();
+		assertTrue(testStock.checkErrorOnHistoricalData());
+	}
+	
+	@Test
+	public void testMultipleErrorOnHistoricalData()
+	{
+		testStock.setErrorOnHistoricalData();
+		testStock.setErrorOnHistoricalData();
+		assertTrue(testStock.checkErrorOnHistoricalData());
+	}
+	
+	public void testNoErrorOnCurrentData()
+	{
+		assertFalse(testStock.checkErrorOnCurrentData());
+	}
+	
+	@Test
+	public void testErrorOnCurrentData()
+	{
+		testStock.setErrorOnCurrentData();
+		assertTrue(testStock.checkErrorOnCurrentData());
+	}
+	
+	@Test
+	public void testMultipleErrorOnCurrentData()
+	{
+		testStock.setErrorOnCurrentData();
+		testStock.setErrorOnCurrentData();
+		assertTrue(testStock.checkErrorOnCurrentData());
 	}
 	
 	@Test
@@ -29,7 +78,7 @@ public class StockTest {
 	@Test
 	public void testPreviousFridayDate() 
 	{
-		assertEquals("12/06/2015", testStock.getPreviousFriDate());
+		assertEquals("12/6/2015", testStock.getPreviousFriDate());
 	}
 	
 	@Test

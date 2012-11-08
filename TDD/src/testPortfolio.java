@@ -59,5 +59,4 @@ public class testPortfolio {
 		
 		assertArrayEquals(testArray, testPortfolio.getPortfolioOptions());
 	}
-	
 }
