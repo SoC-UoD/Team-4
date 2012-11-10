@@ -116,17 +116,15 @@ public class DownloadHistoricalStockData  {
 		     			Log.d("a", "JSONException " + e.getMessage());
 		     			e.getMessage();
 		     			theStock[i].setErrorOnHistoricalData();
-		     			return "fail";
 		     		}
 		         }
 		         else
 		         {
 		        	 theStock[i].setErrorOnHistoricalData();
-		        	 return "fail";
 		         }
 			}
 			
-			return "success";
+			return "done";
 		}
 	
 		@Override
