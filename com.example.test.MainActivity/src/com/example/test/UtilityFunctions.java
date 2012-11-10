@@ -14,7 +14,7 @@ public class UtilityFunctions {
 		 * return null which means there's no more data to read. Each line will
 		 * appended to a StringBuilder and returned as String.
 		 * 
-		 * From stack overflow example... refference? Refactor to another class?
+		 * From stack overflow example... refference?
 		 */
 
 		BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -54,6 +54,41 @@ public class UtilityFunctions {
 		date[2] = myCal.get(Calendar.YEAR);
 		return date;
 	}
+	
+	
+	public static String currentDateAndTime() 
+	{
+		Calendar myCal = Calendar.getInstance();
+		int dateAndTime[] = new int[5];
+		
+		dateAndTime[0] = myCal.get(Calendar.DAY_OF_MONTH);
+		dateAndTime[1] = (myCal.get(Calendar.MONTH)) + 1;
+		dateAndTime[2] = myCal.get(Calendar.YEAR);
+		dateAndTime[3] = myCal.get(Calendar.HOUR_OF_DAY);
+		dateAndTime[4] = myCal.get(Calendar.MINUTE);
+		
+		String dateTime = "";
+		
+		if (dateAndTime[0] < 10)
+			dateTime += "0" + dateAndTime[0]; 
+		else
+			dateTime += dateAndTime[0]; 
+		
+		if (dateAndTime[1] < 10)
+			dateTime += "/0" + dateAndTime[1]; 
+		else
+			dateTime += "/" + dateAndTime[1]; 
+		
+		dateTime += "/" + dateAndTime[2] + " " + dateAndTime[3] + ":";
+		
+		if (dateAndTime[4] < 10)
+			dateTime += "0" + dateAndTime[4];
+		else
+			dateTime += dateAndTime[4];
+		
+		return dateTime;
+	}
+	
 	
 	public static long convertToPoundsRounded(double value)
 	{
