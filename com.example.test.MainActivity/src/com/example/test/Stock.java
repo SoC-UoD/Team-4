@@ -137,7 +137,7 @@ public class Stock {
 	{
 		return Math.round(_numberOfSharesOwned * _previousFridayClosePrice);
 	}
-	
+			
 	public String historicalQuery()
 	{		
 		String queryDate = _prevFriYear + "-" + _prevFriMonth + "-" + _prevFriDay;
