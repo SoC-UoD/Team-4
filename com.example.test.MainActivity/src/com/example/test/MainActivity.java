@@ -68,14 +68,14 @@ public class MainActivity extends Activity implements DownloaderCallBack {
         DownloadHistoricalStockData historicalDownloader = new DownloadHistoricalStockData();
         historicalDownloader.downloadHistoricalFor(thePortfolio, this);
         
-<<<<<<< HEAD
+
         DownloadCurrentStockData currentDownloader = new DownloadCurrentStockData();
         currentDownloader.downloadCurrentFor(thePortfolio, this);
-=======
+        
         stockListView = new StockArrayAdapter(this, thePortfolio.getPortfolioOptions());
         ListView displayList = (ListView)findViewById(R.id.stocksList);
         displayList.setAdapter(stockListView);
->>>>>>> 8b007cc23b1c14e4d107595f7e6a7bedca422ee8
+
     }
     
     // called by downloader when download starts
@@ -87,25 +87,6 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     // called by downloader when download ends
     public void update()
     {
-<<<<<<< HEAD
-    	Stock[] sets = thePortfolio.getPortfolioOptions();
-    	String message = "";
-    	
-    	tv_view.setText("");
-    	
-    	for(int i = 0; i < sets.length; i++)
-    	{
-    			message += tv_view.getText() + "\n" + sets[i].getSymbol() + ": £ " +
-				UtilityFunctions.formatCommas(
-				UtilityFunctions.convertToPoundsRounded(sets[i].getValueForSet()));
-    	}
-    	
-    	/*String message = "Total portfolio value: £ " + 
-    					UtilityFunctions.formatCommas(
-    					UtilityFunctions.convertToPoundsRounded(thePortfolio.getPortfolioValuePrevFriday()));
-    	
-    	message += " for " + previousFridayDate[0] + "/" + previousFridayDate[1] + "/" + previousFridayDate[2];*/
-=======
     	status.setText("Updated: " + UtilityFunctions.currentDateAndTime());
     	
     	total.setText("  Total portfolio value: £ " + 
@@ -114,7 +95,7 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     							thePortfolio.getPortfolioValuePrevFriday()))
     					
     				+ " for " + previousFridayDate[0] + "/" + previousFridayDate[1] + "/" + previousFridayDate[2]);
->>>>>>> 8b007cc23b1c14e4d107595f7e6a7bedca422ee8
+
     	
     	if (!thePortfolio.getErrors().equals(""))
     	{

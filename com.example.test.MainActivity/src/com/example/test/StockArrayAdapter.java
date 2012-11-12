@@ -29,7 +29,7 @@ public class StockArrayAdapter extends ArrayAdapter<Stock> {
 	    currentPrice.setText("£" + 
 	    				UtilityFunctions.formatCommas(
 	    				UtilityFunctions.convertToPoundsRounded(
-	    				_values[position].getCurrentPrice()
+	    				_values[position].getValueForSet()
 	    ))
 	    + "  ");
 	   
