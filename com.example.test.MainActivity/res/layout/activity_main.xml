@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/stocksList"
         android:layout_centerHorizontal="true"
-        android:text="@string/status" />
-
+        android:text="@string/status"
+        android:layout_marginTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/total"
@@ -26,20 +27,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/status"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:gravity="left"
         android:text="@string/total_text"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         tools:context=".MainActivity" />
-
-        <TextView
+    
+    <TextView
         android:id="@+id/error_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/status"
-        android:layout_marginTop="15dp"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/total"
+        android:layout_marginTop="75dp"
         android:text="@string/error_list"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-        
-        
+
 </RelativeLayout>

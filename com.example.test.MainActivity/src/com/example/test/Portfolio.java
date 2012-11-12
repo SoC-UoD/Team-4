@@ -33,6 +33,7 @@ public class Portfolio {
 	
 	public long getPortfolioValuePrevFriday() {
 		double totalPortfolioValuePrevFri = 0;
+		_errors = "";
 		for (int i = 0; i < _optionsPortfolio.size(); i++)
 		{
 			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())

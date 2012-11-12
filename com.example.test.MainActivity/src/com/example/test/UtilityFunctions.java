@@ -116,7 +116,7 @@ public class UtilityFunctions {
 					(portfolio.length()));
 			sub2 = portfolio.substring(0, portfolio.length() - 3);
 
-			return sub2 + "," + sub1 +  "\n";
+			return sub2 + "," + sub1;
 		} else {
 			return  portfolio;
 		}
