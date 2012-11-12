@@ -58,6 +58,9 @@ public class MainActivity extends Activity implements DownloaderCallBack {
         
         DownloadHistoricalStockData historicalDownloader = new DownloadHistoricalStockData();
         historicalDownloader.downloadHistoricalFor(thePortfolio, this);
+        
+        DownloadCurrentStockData currentDownloader = new DownloadCurrentStockData();
+        currentDownloader.downloadCurrentFor(thePortfolio, this);
     }
     
     // called by downloader when download starts
@@ -69,11 +72,23 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     // called by downloader when download ends
     public void update()
     {
-    	String message = "Total portfolio value: £ " + 
+    	Stock[] sets = thePortfolio.getPortfolioOptions();
+    	String message = "";
+    	
+    	tv_view.setText("");
+    	
+    	for(int i = 0; i < sets.length; i++)
+    	{
+    			message += tv_view.getText() + "\n" + sets[i].getSymbol() + ": £ " +
+				UtilityFunctions.formatCommas(
+				UtilityFunctions.convertToPoundsRounded(sets[i].getValueForSet()));
+    	}
+    	
+    	/*String message = "Total portfolio value: £ " + 
     					UtilityFunctions.formatCommas(
     					UtilityFunctions.convertToPoundsRounded(thePortfolio.getPortfolioValuePrevFriday()));
     	
-    	message += " for " + previousFridayDate[0] + "/" + previousFridayDate[1] + "/" + previousFridayDate[2];
+    	message += " for " + previousFridayDate[0] + "/" + previousFridayDate[1] + "/" + previousFridayDate[2];*/
     	
     	if (!thePortfolio.getErrors().equals(""))
     	{
