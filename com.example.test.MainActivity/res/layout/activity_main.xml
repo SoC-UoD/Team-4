@@ -3,14 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
-        android:id="@+id/tv_view"
+    <ListView
+        android:id="@+id/stocksList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stocksList"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:gravity="center"
-        android:text="@string/hello_world"
+        android:text="@string/status" />
+
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/status"
+        android:layout_marginTop="15dp"
+        android:gravity="left"
+        android:text="@string/total_text"
         tools:context=".MainActivity" />
+
+        <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/status"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentLeft="true"
+        android:text="@string/error_list"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+        
         
 </RelativeLayout>

@@ -37,7 +37,7 @@ public class Portfolio {
 		{
 			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())
 			{
-				_errors += " " + _optionsPortfolio.get(i).getSymbol();
+				_errors += _optionsPortfolio.get(i).getSymbol();
 			}
 			else
 			{

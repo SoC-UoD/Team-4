@@ -5,6 +5,8 @@ package com.example.test;
 public class Stock {
 	
 	private String _symbol;
+	private String _company;
+	
 	private double _previousFridayClosePrice;
 	
 	private int _prevFriDay;
@@ -54,6 +56,16 @@ public class Stock {
 	public void setSymbol(String newSymbol)
 	{
 		_symbol = newSymbol;
+	}
+	
+	public String getCompany()
+	{
+		return _company;
+	}
+	
+	public void setCompany(String newCompany)
+	{
+		_company = newCompany;
 	}
 	
 	public double getPreviousFriClosePrice()
