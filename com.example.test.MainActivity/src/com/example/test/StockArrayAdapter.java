@@ -23,7 +23,7 @@ public class StockArrayAdapter extends ArrayAdapter<Stock> {
 	    View rowView = inflater.inflate(R.layout.two_col_list, parent, false);
 	    
 	    TextView company = (TextView) rowView.findViewById(R.id.lv_company);
-	    company.setText("  " + _values[position].getCompany());
+	    company.setText("  " + _values[position].getCompany() + "  (" + _values[position].getSymbol() + ")");
 	   
 	    TextView currentPrice = (TextView)rowView.findViewById(R.id.lv_price);
 	    currentPrice.setText("£" + 
@@ -31,7 +31,7 @@ public class StockArrayAdapter extends ArrayAdapter<Stock> {
 	    				UtilityFunctions.convertToPoundsRounded(
 	    				_values[position].getValueForSet()
 	    ))
-	    + "  ");
+	    + "   ");
 	   
 	    return rowView;
 	  }

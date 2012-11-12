@@ -87,7 +87,7 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     // called by downloader when download ends
     public void update()
     {
-    	status.setText("Updated: " + UtilityFunctions.currentDateAndTime());
+    	status.setText("Last updated: " + UtilityFunctions.currentDateAndTime());
     	
     	total.setText("  Total portfolio value: £ " + 
     					UtilityFunctions.formatCommas(

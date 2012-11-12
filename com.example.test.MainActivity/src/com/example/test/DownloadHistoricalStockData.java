@@ -43,8 +43,7 @@ public class DownloadHistoricalStockData  {
 			// send request for symbol
 			HttpGet httpget = new HttpGet(url);
 			HttpResponse response;
-	
-			Log.d("query", url);
+
 			
 			// start processing response
 			try 
@@ -62,7 +61,7 @@ public class DownloadHistoricalStockData  {
 				{
 					InputStream instream = entity.getContent();
 					String result = UtilityFunctions.convertStreamToString(instream);
-					Log.d("x", result);
+	
 					// parse result string
 					JSONObject json = new JSONObject(result.toString());
 	
