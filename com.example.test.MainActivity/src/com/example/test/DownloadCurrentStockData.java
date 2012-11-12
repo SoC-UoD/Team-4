@@ -116,13 +116,11 @@ public class DownloadCurrentStockData {
 		     			Log.d("a", "JSONException " + e.getMessage());
 		     			e.getMessage();
 		     			theStock[i].setErrorOnCurrentData();
-		     			return "fail";
 		     		}
 		         }
 		         else
 		         {
 		        	 theStock[i].setErrorOnCurrentData();
-		        	 return "fail";
 		         }
 			}
 			

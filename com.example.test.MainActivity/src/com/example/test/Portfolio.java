@@ -6,11 +6,13 @@ public class Portfolio {
 	
 	private int _numberOfStockOptions;
 	private ArrayList<Stock> _optionsPortfolio;
-	private String _errors;
+	private String _historicalErrors;
+	private String _currentErrors;
 	
 	public Portfolio()
 	{
-		_errors = "";
+		_historicalErrors = "";
+		_currentErrors = "";
 		_numberOfStockOptions = 0;
 		_optionsPortfolio = new ArrayList<Stock>();
 	}
@@ -28,17 +30,38 @@ public class Portfolio {
 
 	public String getErrors ()
 	{
-		return _errors;
+		_currentErrors = "";
+		
+		for (int i = 0; i < _optionsPortfolio.size(); i++)
+		{
+			if (_optionsPortfolio.get(i).checkErrorOnCurrentData())
+			{
+				_currentErrors += _optionsPortfolio.get(i).getCompany() + "\n";
+			}
+		}
+		
+		String errors = "";
+		if (!_historicalErrors.equals(""))
+		{
+			errors += "Errors retrieving historical data for: \n" + _historicalErrors + "\n\n";
+		}
+		
+		if (!_currentErrors.equals(""))
+		{
+			errors += "Errors retrieving current data for:\n" + _currentErrors;
+		}
+		
+		return  errors;
 	}
 	
 	public long getPortfolioValuePrevFriday() {
 		double totalPortfolioValuePrevFri = 0;
-		_errors = "";
+		_historicalErrors = "";
 		for (int i = 0; i < _optionsPortfolio.size(); i++)
 		{
 			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())
 			{
-				_errors += _optionsPortfolio.get(i).getSymbol();
+				_historicalErrors += _optionsPortfolio.get(i).getCompany() + "\n";
 			}
 			else
 			{

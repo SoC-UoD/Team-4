@@ -97,11 +97,9 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     				+ " for " + previousFridayDate[0] + "/" + previousFridayDate[1] + "/" + previousFridayDate[2]);
 
     	
-    	if (!thePortfolio.getErrors().equals(""))
-    	{
-    		 errors.setText("\nErrors were encountered retrieving data for:\n" + thePortfolio.getErrors());
-    	}
-    	
+
+        errors.setText(thePortfolio.getErrors());
+      	
     	stockListView.notifyDataSetChanged();
     }
 
