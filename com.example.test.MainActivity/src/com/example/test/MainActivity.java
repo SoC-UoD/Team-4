@@ -3,6 +3,7 @@ package com.example.test;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -76,6 +77,16 @@ public class MainActivity extends Activity implements DownloaderCallBack {
         ListView displayList = (ListView)findViewById(R.id.stocksList);
         displayList.setAdapter(stockListView);
 
+    }
+    
+    public void btnClick(View view)
+    {
+    	DownloadHistoricalStockData historicalDownloader = new DownloadHistoricalStockData();
+        historicalDownloader.downloadHistoricalFor(thePortfolio, this);
+        
+
+        DownloadCurrentStockData currentDownloader = new DownloadCurrentStockData();
+        currentDownloader.downloadCurrentFor(thePortfolio, this);
     }
     
     // called by downloader when download starts

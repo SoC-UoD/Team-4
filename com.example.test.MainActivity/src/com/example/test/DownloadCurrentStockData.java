@@ -104,7 +104,8 @@ public class DownloadCurrentStockData {
 			JSONObject results = downloadAStock(thePortfolio.currentQuery());
 			
 			for (int i = 0; i < theStock.length; i++)
-			{								
+			{						
+				theStock[i].resetCurrentErrors();
 				if (results != null)
 		         {
 		        	 try

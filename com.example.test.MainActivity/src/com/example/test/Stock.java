@@ -28,6 +28,16 @@ public class Stock {
 		_errorOnHistoricalData = false;
 	}
 	
+	public void resetCurrentErrors()
+	{
+		_errorOnCurrentData = false;		
+	}
+		
+	public void resetHistoricalErrors()
+	{
+		_errorOnHistoricalData = false;
+	}
+	
 	public void setErrorOnCurrentData()
 	{
 		_errorOnCurrentData = true;

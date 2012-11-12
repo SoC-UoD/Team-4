@@ -33,12 +33,20 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         tools:context=".MainActivity" />
     
+    <Button 
+        android:id="@+id/reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/total"
+        android:text="@string/button_text"
+        android:onClick="btnClick"/>
+    
     <TextView
         android:id="@+id/error_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/total"
+        android:layout_below="@+id/reload"
         android:layout_marginTop="75dp"
         android:text="@string/error_list"
         android:textAppearance="?android:attr/textAppearanceSmall" />

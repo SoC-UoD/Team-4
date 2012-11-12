@@ -105,6 +105,7 @@ public class DownloadHistoricalStockData  {
 			for (int i = 0; i < theStock.length; i++)
 			{
 				JSONObject results = downloadAStock(theStock[i].historicalQuery());
+				theStock[i].resetHistoricalErrors();
 				
 				if (results != null)
 		         {

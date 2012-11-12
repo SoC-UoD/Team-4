@@ -8,5 +8,6 @@
     <string name="title_activity_downloader_test">DownloaderTestActivity</string>
     <string name="total_text">Total portfolio value:</string>
     <string name="error_list"> </string>
+    <string name="button_text">Reload Data</string>
 
 </resources>

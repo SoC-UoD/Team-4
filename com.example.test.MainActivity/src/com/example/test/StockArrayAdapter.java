@@ -24,15 +24,19 @@ public class StockArrayAdapter extends ArrayAdapter<Stock> {
 	    
 	    TextView company = (TextView) rowView.findViewById(R.id.lv_company);
 	    company.setText("  " + _values[position].getCompany() + "  (" + _values[position].getSymbol() + ")");
-	   
+	   	    
 	    TextView currentPrice = (TextView)rowView.findViewById(R.id.lv_price);
+	   if(_values[position].checkErrorOnCurrentData())
+		   currentPrice.setText("Not Available");
+	   else
+	   {
 	    currentPrice.setText("£" + 
 	    				UtilityFunctions.formatCommas(
 	    				UtilityFunctions.convertToPoundsRounded(
 	    				_values[position].getValueForSet()
 	    ))
 	    + "   ");
-	   
+	   }
 	    return rowView;
 	  }
 }
