@@ -30,7 +30,10 @@ public class testPortfolio {
 	public void testAddAStock() 
 	{
 		testPortfolio.addStock(bp);
-		assertEquals(1, testPortfolio.getNumberOfStockOptionsInPortfolio());
+		Stock testArray[] = new Stock[1];
+		testArray[0] = bp;
+		
+		assertArrayEquals(testArray, testPortfolio.getPortfolioOptions());
 	}
 	
 	@Test 
@@ -38,7 +41,11 @@ public class testPortfolio {
 	{
 		testPortfolio.addStock(bp);
 		testPortfolio.addStock(mks);
-		assertEquals(2, testPortfolio.getNumberOfStockOptionsInPortfolio());
+		Stock testArray[] = new Stock[2];
+		testArray[0] = bp;
+		testArray[1] = mks;
+		
+		assertArrayEquals(testArray, testPortfolio.getPortfolioOptions());
 	}
 	
 	@Test
@@ -50,14 +57,18 @@ public class testPortfolio {
 	}
 	
 	@Test
-	public void testGetPortfolioOptions()
+	public void testGetErrors()
 	{
 		testPortfolio.addStock(bp);
 		testPortfolio.addStock(mks);
-		Stock testArray[] = new Stock[2];
-		testArray[0] = bp;
-		testArray[1] = mks;
-		
-		assertArrayEquals(testArray, testPortfolio.getPortfolioOptions());
+		assertEquals("", testPortfolio.getErrors());
+	}
+	
+	@Test
+	public void testCurrentQuery()
+	{
+		testPortfolio.addStock(bp);
+		testPortfolio.addStock(mks);
+		assertEquals("http://query.yahooapis.com/v1/public/yql?q=select%20LastTradePriceOnly%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22BP.L%22%2C%22MKS.L%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=", testPortfolio.currentQuery());
 	}
 }

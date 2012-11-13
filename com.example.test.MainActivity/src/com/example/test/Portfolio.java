@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Portfolio {
 	
-	private int _numberOfStockOptions;
 	private ArrayList<Stock> _optionsPortfolio;
 	private String _historicalErrors;
 	private String _currentErrors;
@@ -13,18 +12,12 @@ public class Portfolio {
 	{
 		_historicalErrors = "";
 		_currentErrors = "";
-		_numberOfStockOptions = 0;
 		_optionsPortfolio = new ArrayList<Stock>();
 	}
 	
-	public int getNumberOfStockOptionsInPortfolio()
-	{
-		return _numberOfStockOptions;
-	}
 	
 	public void addStock(Stock newStock)
 	{
-		_numberOfStockOptions++;
 		_optionsPortfolio.add(newStock);
 	}
 
@@ -78,6 +71,16 @@ public class Portfolio {
 	
 	public String currentQuery()
 	{
-		return "http://query.yahooapis.com/v1/public/yql?q=select%20LastTradePriceOnly%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(%22BP.L%22%2C%22EXPN.L%22%2C%22HSBA.L%22%2C%22MKS.L%22%2C%22SN.L%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+		String query = "http://query.yahooapis.com/v1/public/yql?q=select%20LastTradePriceOnly%20from%20yahoo.finance.quotes%20where%20symbol%20in%20(";
+		for(int i = 0; i < _optionsPortfolio.size(); i++)
+		{
+			query += "%22" + _optionsPortfolio.get(i).getSymbol() + "%22";
+			if(i != _optionsPortfolio.size() -1)
+			{
+				query += "%2C";
+			}
+		}
+		query +=")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+		return query;
 	}
 }
