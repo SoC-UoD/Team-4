@@ -17,7 +17,8 @@ import org.json.JSONObject;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DownloadCurrentStockData {
+public class DownloadCurrentStockData 
+{
 	Portfolio thePortfolio;
 	DownloaderCallBack notifyUi;
 	
@@ -30,7 +31,8 @@ public class DownloadCurrentStockData {
 		cbdThread.execute(portfolioOptions);
 	}
 	
-	private class CurrentBackgroundDownloader extends AsyncTask<Stock, Integer, String> {
+	private class CurrentBackgroundDownloader extends AsyncTask<Stock, Integer, String> 
+	{
 		private JSONObject downloadAStock(String url)
 		{
 			JSONObject results;
@@ -129,13 +131,15 @@ public class DownloadCurrentStockData {
 		}
 	
 		@Override
-	     protected void onPreExecute() {
+	     protected void onPreExecute() 
+		{
 	         super.onPreExecute();    
 	         notifyUi.downloading();
 	     }
 		
 		@Override
-	     protected void onPostExecute(String result) {
+	     protected void onPostExecute(String result) 
+		{
 	         super.onPostExecute(result);    
 	         notifyUi.update();
 	     }

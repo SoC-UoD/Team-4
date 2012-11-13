@@ -2,7 +2,8 @@ package com.example.test;
 
 /* Class represents a stock option... that is a investment in one stock symbol */ 
 
-public class Stock {
+public class Stock 
+{
 	
 	private String _symbol;
 	private String _company;

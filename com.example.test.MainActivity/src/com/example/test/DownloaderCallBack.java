@@ -1,6 +1,7 @@
 package com.example.test;
 
-interface DownloaderCallBack {
+interface DownloaderCallBack 
+{
 	void downloading();
 	void update();
 }

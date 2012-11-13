@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements DownloaderCallBack {
+public class MainActivity extends Activity implements DownloaderCallBack 
+{
 	
 	TextView total;
 	TextView status;
@@ -18,7 +19,8 @@ public class MainActivity extends Activity implements DownloaderCallBack {
 	StockArrayAdapter stockListView;
 	
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) 
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
@@ -27,7 +29,6 @@ public class MainActivity extends Activity implements DownloaderCallBack {
         total = (TextView)findViewById(R.id.total);
         status = (TextView)findViewById(R.id.status);
         errors = (TextView)findViewById(R.id.error_text);
-        //total.setTextSize(50);
   
         thePortfolio = new Portfolio();
         Stock bp = new Stock();
@@ -115,7 +116,8 @@ public class MainActivity extends Activity implements DownloaderCallBack {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu) 
+    {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }

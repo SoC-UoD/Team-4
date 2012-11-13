@@ -56,7 +56,8 @@ public class Portfolio {
 		return  errors;
 	}
 	
-	public long getPortfolioValuePrevFriday() {
+	public long getPortfolioValuePrevFriday() 
+	{
 		double totalPortfolioValuePrevFri = 0;
 		
 		for (int i = 0; i < _optionsPortfolio.size(); i++)

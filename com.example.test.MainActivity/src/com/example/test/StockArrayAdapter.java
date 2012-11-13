@@ -7,18 +7,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class StockArrayAdapter extends ArrayAdapter<Stock> {
+public class StockArrayAdapter extends ArrayAdapter<Stock> 
+{
 	  private final Context _context;
 	  private final Stock[] _values;
 
-	  public StockArrayAdapter(Context context, Stock[] values) {
+	  public StockArrayAdapter(Context context, Stock[] values) 
+	  {
 	    super(context, R.layout.two_col_list, values);
 	    this._context = context;
 	    this._values = values;
 	  }
 
 	  @Override
-	  public View getView(int position, View convertView, ViewGroup parent) {
+	  public View getView(int position, View convertView, ViewGroup parent) 
+	  {
 	    LayoutInflater inflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	    View rowView = inflater.inflate(R.layout.two_col_list, parent, false);
 	    
@@ -27,7 +30,9 @@ public class StockArrayAdapter extends ArrayAdapter<Stock> {
 	   	    
 	    TextView currentPrice = (TextView)rowView.findViewById(R.id.lv_price);
 	   if(_values[position].checkErrorOnCurrentData())
+	   {
 		   currentPrice.setText("Not Available");
+	   }
 	   else
 	   {
 	    currentPrice.setText("£" + 

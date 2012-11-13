@@ -6,8 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
 
-public class UtilityFunctions {
-	public static String convertStreamToString(InputStream is) {
+public class UtilityFunctions 
+{
+	public static String convertStreamToString(InputStream is) 
+	{
 		/*
 		 * To convert the InputStream to string we use the
 		 * BufferedReader.readLine() method. We iterate until the BufferedReader
@@ -21,23 +23,33 @@ public class UtilityFunctions {
 		StringBuilder sb = new StringBuilder();
 
 		String line = null;
-		try {
-			while ((line = reader.readLine()) != null) {
+		try 
+		{
+			while ((line = reader.readLine()) != null) 
+			{
 				sb.append(line + "\n");
 			}
-		} catch (IOException e) {
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
-		} finally {
-			try {
+		} 
+		finally 
+		{
+			try 
+			{
 				is.close();
-			} catch (IOException e) {
+			} 
+			catch (IOException e) 
+			{
 				e.printStackTrace();
 			}
 		}
 		return sb.toString();
 	}
 	 
-	public static int[] previousFridayDate() {
+	public static int[] previousFridayDate() 
+	{
 		Calendar myCal = Calendar.getInstance();
 		int date[] = new int[3];
 
@@ -103,7 +115,8 @@ public class UtilityFunctions {
 		String sub1 = "";
 		String sub2 = "";
 		String sub3 = "";
-		if (portfolio.length() > 6) {
+		if (portfolio.length() > 6) 
+		{
 			sub1 = portfolio.substring((portfolio.length() - 3),
 					(portfolio.length()));
 			sub2 = portfolio.substring((portfolio.length() - 6),
@@ -111,13 +124,17 @@ public class UtilityFunctions {
 			sub3 = portfolio.substring(0, portfolio.length() - 6);
 
 			return sub3 + "," + sub2 + "," + sub1;
-		} else if (portfolio.length() > 3) {
+		} 
+		else if (portfolio.length() > 3) 
+		{
 			sub1 = portfolio.substring((portfolio.length() - 3),
 					(portfolio.length()));
 			sub2 = portfolio.substring(0, portfolio.length() - 3);
 
 			return sub2 + "," + sub1;
-		} else {
+		} 
+		else 
+		{
 			return  portfolio;
 		}
 	}
