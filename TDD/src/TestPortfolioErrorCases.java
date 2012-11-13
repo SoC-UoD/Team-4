@@ -11,7 +11,6 @@ public class TestPortfolioErrorCases {
 
 	private Portfolio testPortfolio;
 	private Stock bp;
-	private Stock mks;
 	
 	@Before
 	public void setUp() throws Exception 
@@ -20,10 +19,7 @@ public class TestPortfolioErrorCases {
 		
 		bp = new Stock();
 		bp.setSymbol("BP.L");
-		
-		mks = new Stock();
-		mks.setSymbol("MKS.L");
-		
+		testPortfolio.addStock(bp);
 	}
 	
 	@Test
