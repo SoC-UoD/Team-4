@@ -33,6 +33,15 @@ public class Portfolio {
 			}
 		}
 		
+		_historicalErrors = "";
+		for (int i = 0; i < _optionsPortfolio.size(); i++)
+		{
+			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())
+			{
+				_historicalErrors += _optionsPortfolio.get(i).getCompany() + "\n";
+			}
+		}
+		
 		String errors = "";
 		if (!_historicalErrors.equals(""))
 		{
@@ -49,18 +58,15 @@ public class Portfolio {
 	
 	public long getPortfolioValuePrevFriday() {
 		double totalPortfolioValuePrevFri = 0;
-		_historicalErrors = "";
+		
 		for (int i = 0; i < _optionsPortfolio.size(); i++)
 		{
-			if (_optionsPortfolio.get(i).checkErrorOnHistoricalData())
-			{
-				_historicalErrors += _optionsPortfolio.get(i).getCompany() + "\n";
-			}
-			else
+			if (!_optionsPortfolio.get(i).checkErrorOnHistoricalData())
 			{
 				totalPortfolioValuePrevFri += _optionsPortfolio.get(i).getValueForPrevFriSet();
 			}
 		}
+	
 		return Math.round(totalPortfolioValuePrevFri);
 	}
 			

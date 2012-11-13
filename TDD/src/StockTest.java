@@ -2,7 +2,6 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-import com.example.test.Portfolio;
 import com.example.test.Stock;
 
 public class StockTest {
@@ -177,4 +176,26 @@ public class StockTest {
 	{
 		assertEquals(15064.0, testStock.getValueForPrevFriSet(), 0.000001);
 	}
+	
+	@Test
+	public void testCompanyName()
+	{
+		testStock.setCompany("ACME Stocks");
+		assertEquals("ACME Stocks", testStock.getCompany());
+	}
+	
+	@Test
+	public void testResetDataErrors()
+	{
+		testStock.setErrorOnCurrentData();
+		testStock.setErrorOnHistoricalData();
+		
+		testStock.resetCurrentErrors();
+		testStock.resetHistoricalErrors();
+		
+		assertFalse(testStock.checkErrorOnCurrentData());
+		assertFalse(testStock.checkErrorOnHistoricalData());
+	}
+	
+	
 }
