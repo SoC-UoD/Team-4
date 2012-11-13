@@ -14,9 +14,6 @@ public class Stock {
 	private int _prevFriYear;
 	
 	private double _currentPrice;
-	private double _marketCap;
-	private int _volume;
-	private double _percentChange;
 	private int _numberOfSharesOwned;
 	
 	private boolean _errorOnCurrentData;
@@ -96,6 +93,10 @@ public class Stock {
 	public void setCurrentPrice(double newPrice) 
 	{
 		_currentPrice = newPrice;
+		if(newPrice < 0 || newPrice > 50000)
+		{
+			_errorOnCurrentData = true;
+		}
 	}
 	
 	public String getPreviousFriDate()
@@ -110,39 +111,14 @@ public class Stock {
 		_prevFriYear = year; 
 	}
 	
-	public void setMarketCap(double newCap)
-	{
-		_marketCap = newCap;
-	}
-	
-	public double getMarketCap()
-	{
-		return _marketCap;
-	}
-	
-	public void setVolume(int newVolume)
-	{
-		_volume = newVolume;
-	}
-
-	public int getVolume()
-	{
-		return _volume;
-	}
-	
-	public void setPercentChange(double newPercent)
-	{
-		_percentChange = newPercent;
-	}
-	
-	public double getPercentChange()
-	{
-		return _percentChange;
-	}
-	
 	public void setNumberOfSharesOwned(int newNumber)
 	{
 		_numberOfSharesOwned = newNumber;
+		if(newNumber >5000 || newNumber < 0)
+		{
+			_errorOnCurrentData = true;
+			_errorOnHistoricalData = true;
+		}
 	}
 	
 	public int getNumberOfSharesOwned()

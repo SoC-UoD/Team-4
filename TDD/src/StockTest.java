@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 
 import org.junit.*;
+
+import com.example.test.Portfolio;
 import com.example.test.Stock;
 
 public class StockTest {
@@ -15,10 +17,81 @@ public class StockTest {
 		testStock.setNumberOfSharesOwned(125);
 		testStock.setCurrentPrice(123.45);
 		testStock.setPreviousFriDate(12, 06, 2015);
-		testStock.setMarketCap(1239999999999999.45);
 		testStock.setPreviousFriClosePrice(120.51);
-		testStock.setVolume(123456789);
-		testStock.setPercentChange(0.24);
+	}
+	
+	@Test
+	public void testCase1()
+	{
+		testStock.setCurrentPrice(-1);
+		testStock.setNumberOfSharesOwned(0);
+		assertTrue(testStock.checkErrorOnCurrentData());
+	}
+	
+	@Test
+	public void testCase2()
+	{
+		testStock.setCurrentPrice(50001);
+		testStock.setNumberOfSharesOwned(0);
+		assertTrue(testStock.checkErrorOnCurrentData());
+	}
+	
+	@Test
+	public void testCase3()
+	{
+		testStock.setCurrentPrice(1);
+		testStock.setNumberOfSharesOwned(-1);
+		assertTrue(testStock.checkErrorOnCurrentData());
+		assertTrue(testStock.checkErrorOnHistoricalData());
+	}
+	
+	@Test
+	public void testCase4()
+	{
+		testStock.setCurrentPrice(1);
+		testStock.setNumberOfSharesOwned(5001);
+		assertTrue(testStock.checkErrorOnCurrentData());
+		assertTrue(testStock.checkErrorOnHistoricalData());
+	}
+	
+	@Test
+	public void testCase5()
+	{
+		testStock.setCurrentPrice(0);
+		testStock.setNumberOfSharesOwned(0);
+		assertEquals(0, testStock.getValueForSet());
+	}
+	
+	@Test
+	public void testCase6()
+	{
+		testStock.setCurrentPrice(1);
+		testStock.setNumberOfSharesOwned(1);
+		assertEquals(1, testStock.getValueForSet());
+	}
+	
+	@Test
+	public void testCase7()
+	{
+		testStock.setCurrentPrice(49999);
+		testStock.setNumberOfSharesOwned(4999);
+		assertEquals(249945001, testStock.getValueForSet());
+	}
+	
+	@Test
+	public void testCase8()
+	{
+		testStock.setCurrentPrice(50000);
+		testStock.setNumberOfSharesOwned(5000);
+		assertEquals(250000000, testStock.getValueForSet());
+	}
+	
+	@Test
+	public void testCase9()
+	{
+		testStock.setCurrentPrice(49999.98);
+		testStock.setNumberOfSharesOwned(5000);
+		assertEquals(249999900.00, testStock.getValueForSet(), 1);
 	}
 	
 	@Test
@@ -82,27 +155,9 @@ public class StockTest {
 	}
 	
 	@Test
-	public void testMarketCap() 
-	{
-		assertEquals(1239999999999999.45, testStock.getMarketCap(), 0.0001);
-	}
-	
-	@Test
 	public void testPreviousFridayClosePrice() 
 	{
 		assertEquals(120.51, testStock.getPreviousFriClosePrice(), 0.0001);
-	}
-	
-	@Test
-	public void testVolume() 
-	{
-		assertEquals(123456789, testStock.getVolume());
-	}
-	
-	@Test
-	public void testPercentChange() 
-	{
-		assertEquals(0.24, testStock.getPercentChange(), 0.00001);
 	}
 	
 	@Test
